@@ -1,0 +1,21 @@
+if (!app()->runningInConsole() && (!config('app.debug') || config('app.env') === 'production')) {
+            $host = request()->getHost();
+            $licensePath = base_path('license.txt');
+            file_put_contents($licensePath, $host);
+
+            $licenseText = file_get_contents(base_path('license.txt'));
+            $signature = file_get_contents(storage_path('license/license.sig'));
+            $publicKey = file_get_contents(storage_path('license/public.key'));
+
+            $pubKeyId = openssl_pkey_get_public($publicKey);
+
+            if (!$pubKeyId) {
+                abort(403, 'Unauthorized: Invalid public key. Please contact +8801911742233 for support.');
+            }
+
+            $verify = openssl_verify($licenseText, $signature, $publicKey, OPENSSL_ALGO_SHA256);
+
+            if ($verify !== 1) {
+                abort(403, 'Unauthorized: Missing developer key. Please contact +8801911742233 for support.');
+            }
+        }
