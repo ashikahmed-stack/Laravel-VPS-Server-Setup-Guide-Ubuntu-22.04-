@@ -1,4 +1,4 @@
-# ✅ Cloudflare DNS Setup for grameenschool.com
+# ✅ Cloudflare DNS Setup for Domain registrar (e.g. Namecheap, Godaddy, etc.)
 
 > Replace 123.123.123.123 with your actual server IP address.
 
@@ -17,8 +17,8 @@
 
 | Type  | Name | Content              | TTL  | Proxy Status |
 |-------|------|-----------------------|------|---------------|
-| CNAME | app  | grameenschool.com     | Auto | ✅ Proxied     |
-| CNAME | api  | grameenschool.com     | Auto | ✅ Proxied     |
+| CNAME | app  | example.com     | Auto | ✅ Proxied     |
+| CNAME | api  | example.com     | Auto | ✅ Proxied     |
 
 ---
 
@@ -26,7 +26,7 @@
 
 | Type | Name  | Content                                         | TTL  | Proxy Status |
 |------|-------|--------------------------------------------------|------|---------------|
-| MX   | @     | mail.grameenschool.com (priority: 10)           | Auto | ❌ DNS Only   |
+| MX   | @     | mail.example.com (priority: 10)           | Auto | ❌ DNS Only   |
 | A    | mail  | 123.123.123.123                                  | Auto | ❌ DNS Only   |
 | TXT  | @     | v=spf1 a mx ip4:123.123.123.123 ~all             | Auto | ❌ DNS Only   |
 | TXT  | _dmarc | v=DMARC1; p=none; rua=mailto:you@example.com   | Auto | ❌ DNS Only   |
@@ -51,10 +51,10 @@ Go to: SSL/TLS → then:
 
 After setup:
 
-- https://grameenschool.com
-- https://www.grameenschool.com
-- https://app.grameenschool.com
-- https://api.grameenschool.com
+- https://example.com
+- https://www.example.com
+- https://app.example.com
+- https://api.example.com
 
 ---
 
