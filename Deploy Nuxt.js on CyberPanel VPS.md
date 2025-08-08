@@ -39,16 +39,16 @@ npm -v
 npm install -g pm2
 pm2 -v
 
-# 3. Upload / Clone Nuxt Project
+npm install -g pm2
 
-cd /home/yourdomain.com/public_html
-# If using git
-git clone https://github.com/username/your-nuxt-app.git .
+cd /home/grameenschool.com/public_html
 
-# 4. Install Dependencies & Build
+pm2 start ./server/index.mjs --name grameenschool
 
-npm install
-npm run build
+pm2 save
+
+pm2 startup
+
 
 # 5. Start with PM2
 pm2 start npm --name "nuxt-app" -- run start
@@ -89,3 +89,27 @@ pm2 restart nuxt-app      # Restart
 pm2 delete nuxt-app       # Remove
 pm2 logs nuxt-app         # View logs
 pm2 monit                 # Live monitor
+
+# কীভাবে সমস্যা ঠিক করবেন
+
+## ১. nghttpx কি?
+এটা হল HTTP/2 প্রোক্সি সার্ভার (nghttp2 HTTP/2 proxy)। হয়তো CyberPanel বা OpenLiteSpeed এর সাথে সেটআপে চলছে।
+
+## ২. nghttpx বন্ধ বা অন্য পোর্টে সরান
+
+সমাধান:
+
+`nghttpx` কে বন্ধ করুন বা পোর্ট পরিবর্তন করুন যাতে 3000 পোর্ট ফাঁকা হয়।
+
+```bash
+sudo systemctl stop nghttpx
+sudo systemctl disable nghttpx
+
+
+`তারপর আবার চেক করুন:`
+sudo lsof -i :3000
+
+server: {
+  host: '0.0.0.0',
+  port: 3001,
+},
