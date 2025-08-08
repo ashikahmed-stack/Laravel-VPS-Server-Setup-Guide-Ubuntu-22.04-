@@ -73,3 +73,19 @@ server {
     }
 }
 
+Enable site & restart Nginx:
+ln -s /etc/nginx/sites-available/yourdomain.com /etc/nginx/sites-enabled/
+nginx -t
+systemctl restart nginx
+
+# 8. Optional: Enable HTTPS (Let's Encrypt)
+apt install certbot python3-certbot-nginx -y
+certbot --nginx -d yourdomain.com -d www.yourdomain.com
+
+# 9. PM2 Commands Quick Reference
+pm2 list                  # Running processes দেখাবে
+pm2 stop nuxt-app         # Stop
+pm2 restart nuxt-app      # Restart
+pm2 delete nuxt-app       # Remove
+pm2 logs nuxt-app         # View logs
+pm2 monit                 # Live monitor
