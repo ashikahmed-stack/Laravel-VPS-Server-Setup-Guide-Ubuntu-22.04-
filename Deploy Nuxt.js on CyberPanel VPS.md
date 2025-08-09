@@ -1,5 +1,28 @@
 # Nuxt 3 Deployment on VPS with PM2 & CyberPanel
 
+# OpenLiteSpeed Admin Password Reset Guide
+
+## Purpose
+This guide explains how to reset the OpenLiteSpeed WebAdmin Console password.
+
+---
+
+## Steps to Reset OpenLiteSpeed Admin Password
+
+### 1. Login to your server via SSH
+
+Use your preferred SSH client to connect to your VPS or dedicated server.
+
+---
+
+### 2. Run the password reset script
+
+Execute the following command in the terminal:
+
+```bash
+/usr/local/lsws/admin/misc/admpass.sh
+
+
 ---
 
 ## 1. Clean up existing PM2 processes
